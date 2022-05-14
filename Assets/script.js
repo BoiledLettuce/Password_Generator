@@ -1,5 +1,5 @@
 var characterLength = 8;
-var choiceArr = [];
+var choiceArray = [];
 
 var specialCharArray = '!@#$%^&*()[]{}|?/<>' .split('');
 var lowerCaseArray = 'abcdefghijklmnopqrstuvwxyz' .split('');
@@ -8,61 +8,85 @@ var numberArray = '1234567890' .split('');
 console.log(specialCharArray,lowerCaseArray,upperCaseArray,numberArray);
 
 function generatePassword() {
-  console.log("Button has been touched tho")
+  console.log("Button has been clicked tho")
+    var password = "";
 
-  var password = prompt("You wanna make a password tho? how long then?")
-  console.log("Password length = " + password);
-  
-    if (isNaN(password)) {
-      alert ('Not a number');
-      
-    } else {
-      var password = confirm("Okay you want lower case?")
-      console.log("lower case = " + password);
+    for(var i = 0; i < characterLength; i++) {
+      var randomPassword = Math.floor(Math.random() * choiceArray.length)
+      password = password + choiceArray[randomPassword];
     }
-  
-    var password = confirm("Okay you want upper case?")
-  console.log("upper case = " + password);
-
-  var password = confirm("Okay you want numbers?")
-  console.log("numbers = " + password);
-  
-  var password = confirm("Okay you want special characters?")
-  console.log("special characters = " + password);
-  
-  return "Generated password be here tho"
+  return password;
 }
   
 function getPrompts() {
+  
+  choiceArray = [];
+
   characterLength = parseInt(prompt('Character Length? (8-128)'));
 
   if(isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
-    alert("NOT A NUMBER")
+    alert("This is illegal");
+    return false;
+    
   }
+      console.log("Password length = " + characterLength);
+
+  if (confirm("Do you want lowercase letters?")) {
+    choiceArray = choiceArray.concat(lowerCaseArray);
+  }
+      console.log("lower case = " + lowerCaseArray);
+
+  if (confirm("Do you want uppercase letters?")) {
+    choiceArray = choiceArray.concat(upperCaseArray);
+  }
+    console.log("upper case = " + upperCaseArray);
+
+  if (confirm("Do you want special characters?")) {
+    choiceArray = choiceArray.concat(specialCharArray);
+  }
+    console.log("special = " + specialCharArray);
+
+  if (confirm("Do you want numbers?")) {
+    choiceArray = choiceArray.concat(numberArray);
+  }
+    console.log("numbers = " + numberArray);
+
+  return true;
 }
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+    var goodPrompts =  getPrompts(); //I put this here
 
-  passwordText.value = password;
-
+    if(goodPrompts) {
+      var password = generatePassword();
+      var passwordText = document.querySelector("#password");
+    
+      passwordText.value = password;
+    } else {
+      alert("TRY AGAIN");
+    }
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword,);
 
 
 
 
 
+//old code
+// var password = confirm("Okay you want upper case?")
+//   console.log("upper case = " + password);
 
+//   var password = confirm("Okay you want numbers?")
+//   console.log("numbers = " + password);
+  
+//   var password = confirm("Okay you want special characters?")
+//   console.log("special characters = " + password);
 
 
 
