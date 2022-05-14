@@ -12,27 +12,27 @@ function generatePassword() {
   var password = ""; //makes sure password is cleared for generating
 
   for (var i = 0; i < characterLength; i++) {
-    var randomPassword = Math.floor(Math.random() * choiceArray.length)
-    password = password + choiceArray[randomPassword];
+    var randomPassword = Math.floor(Math.random() * choiceArray.length) //Math resposible for selecting from final merged arrays
+    password = password + choiceArray[randomPassword]; //stores the newly created password
   }
   return password;
 }
 
-function getPrompts() {
+function getPrompts() { //runs when button is pressed
 
   choiceArray = [];
 
-  characterLength = parseInt(prompt('Character Length? (8-128)'));
+  characterLength = parseInt(prompt('Character Length? (8-128)')); // user will input a string number, this will make it a real number and replace from characterLength
 
-  if (isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
+  if (isNaN(characterLength) || characterLength < 8 || characterLength > 128) { // if prompted user inputs a non-number OR chars less than 8 OR more than 128, line 29 stops function and defines it as false. otherwise continue
     alert("This is illegal");
-    return false;
+    return false; //stops the function and exits
 
   }
-  console.log("Password length = " + characterLength);
+  console.log("Password length = " + characterLength); 
 
-  if (confirm("Do you want lowercase letters?")) {
-    choiceArray = choiceArray.concat(lowerCaseArray);
+  if (confirm("Do you want lowercase letters?")) { 
+    choiceArray = choiceArray.concat(lowerCaseArray); //concat is to merge lowerCaseArray into choiceArray
   }
   console.log("lower case = " + lowerCaseArray);
 
