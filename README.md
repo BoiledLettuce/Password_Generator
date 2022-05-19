@@ -14,7 +14,7 @@ Preview of website:
 
 ![password demo](./assets/preview.JPG)
 
-**Link:** https://boiledlettuce.github.io/homework-3/
+**Link:** https://boiledlettuce.github.io/Password_Generator/
 
 - - -
 © Joshua Henson
